@@ -14,7 +14,7 @@
 <script>
 import Recipes from "../components/Recipes.vue";
 export default {
-  name: "Recipes",
+  name: "Home",
   components: {
     Recipes,
   },
@@ -24,13 +24,17 @@ export default {
     };
   },
   computed: {
-    products() {
+    recipes() {
       return this.$root.$data.recipes.filter(
         (recipe) =>
           recipe.name.toLowerCase().search(this.searchText.toLowerCase()) >= 0
       );
     },
+    test() {
+      return this.$root.$data.recipes;
+    }
   },
+  
 };
 </script>
 

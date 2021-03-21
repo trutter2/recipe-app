@@ -1,10 +1,12 @@
 <template>
   <div class="wrapper">
     <div class="products">
-      <div class="product" v-for="recipe in recipes" :key="recipe.id">
+      <div class="product" v-for="(recipe, index) in recipes" :key="recipe.id">
         <div class="info">
           <h1>{{ recipe.name }}</h1>
-          <h1>here i am</h1>
+          <p>Ingredients: {{ recipe.ingredients }}</p>
+          <p>Time: {{ recipe.time }} mins </p>
+          <button class="button" @click="deleteRecipe(index)"><i class="fas fa-trash-alt"></i></button>
         </div>
       </div>
     </div>
@@ -19,7 +21,9 @@ export default {
     recipes: Array,
   },
   methods: {
-
+      deleteRecipe(index) {
+        this.$root.$data.recipes.splice(index, 1);
+    }
   },
 };
 </script>
@@ -45,25 +49,16 @@ export default {
   margin-top: 50px;
   width: 200px;
 }
-
-.product img {
-  border: 2px solid #333;
-  height: 250px;
-  width: 200px;
-  object-fit: cover;
+.button {
+    float: right;
 }
 
-.product .image {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 5px;
-}
 
 .info {
-  background: #f2921d;
-  color: #000;
+  background: rgb(49, 49, 99);
+  color: white;
   padding: 10px 30px;
-  height: 80px;
+  height: auto;
 }
 
 .info h1 {
